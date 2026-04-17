@@ -22,3 +22,28 @@ function generatePlan() {
 
   output.innerHTML = plan;
 }
+const topics = ["fractions", "algèbre", "géométrie", "verbes", "histoire"];
+
+function showSuggestions() {
+  let input = document.getElementById("topic").value.toLowerCase();
+  let suggestionsDiv = document.getElementById("suggestions");
+
+  suggestionsDiv.innerHTML = "";
+
+  if (input === "") return;
+
+  let filtered = topics.filter(topic => topic.startsWith(input));
+
+  filtered.forEach(topic => {
+    let div = document.createElement("div");
+    div.classList.add("suggestion");
+    div.innerText = topic;
+
+    div.onclick = () => {
+      document.getElementById("topic").value = topic;
+      suggestionsDiv.innerHTML = "";
+    };
+
+    suggestionsDiv.appendChild(div);
+  });
+}
